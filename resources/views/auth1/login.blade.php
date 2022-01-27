@@ -32,7 +32,8 @@
                 </div>
             @endif
             <div class="login-content">
-                <form action="{{ route('login') }}" method="POST" class="fs-13px" id="form" data-parsley-validate>
+                <form action="{{ route('login') }}" method="POST" class="fs-13px" id="form" data-parsley-validate
+                    autocomplete="off">
                     @csrf
                     <div class="mb-3">
                         <label class="mb-2">Email</label>
