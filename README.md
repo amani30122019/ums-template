@@ -23,6 +23,7 @@
         2.php artisan db:seed --class=PermissionTableSeeder
         3.php artisan db:seed --class=UserTableSeeder
 10. Start the application by running "php artisan serve"
+11. Login as Super Admin:- email == 'superadmin@gmail.com', password == 'Super2022.'
 
 ## About Laravel
 
