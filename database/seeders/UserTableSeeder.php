@@ -18,10 +18,10 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'first_name' => 'Amani',
-            'last_name' => 'Mgeni',
-            'email' => 'mgeni@gmail.com',
-            'password' => Hash::make('Amani2022.')
+            'first_name' => 'Super',
+            'last_name' => 'Admin',
+            'email' => 'superadmin@gmail.com',
+            'password' => Hash::make('Super2022.')
         ]);
          
         $role = Role::find(1);

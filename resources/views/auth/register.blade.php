@@ -6,12 +6,11 @@
         <div class="news-feed">
             <div class="news-image" style="background-image: url(../assets/img/login-bg/login-bg-15.jpg)"></div>
             <div class="news-caption">
-                <h4 class="caption-title"><b>UMS</b> Template App</h4>
+                <h4 class="caption-title"><b>{{ config('app.name') }} </b></h4>
                 <p>
                     As a {{ config('app.name') }} app administrator, you use the {{ config('app.name') }} console to
                     manage your
-                    organization’s account, such as add new users, manage security settings, and turn on the
-                    services you want your team to access.
+                    organization’s account
                 </p>
             </div>
         </div>
@@ -21,10 +20,9 @@
 
             <div class="register-header mb-25px h1">
                 <div class="mb-1">Sign Up</div>
-                <small class="d-block fs-15px lh-16">Create your {{ config('app.name') }} Account. It’s free and always
-                    will
-                    be.</small>
+
             </div>
+            <hr class="bg-gray-600 opacity-2" />
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
                     <strong>Opps!</strong> Something went wrong, please check below errors.<br><br>

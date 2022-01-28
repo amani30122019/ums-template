@@ -6,10 +6,10 @@
         <div class="news-feed">
             <div class="news-image" style="background-image: url(../assets/img/login-bg/login-bg-11.jpg)"></div>
             <div class="news-caption">
-                <h4 class="caption-title"><b>Login</b> System</h4>
+                <h4 class="caption-title"><b>{{ config('app.name') }}</b> </h4>
                 <p>
-                    Download the Login System app for iPhone®, iPad®, and Android™. Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit.
+                    Admin and user management template for web applications
+                    Using Laravel Backend framework
                 </p>
             </div>
         </div>
@@ -17,10 +17,11 @@
             <div class="login-header mb-30px">
                 <div class="brand">
                     <div class="d-flex align-items-center">
-                        <i class="fa fa-sign-in-alt mx-3"></i> <b>Login</b>
+                        <b>Login</b>
                     </div>
                 </div>
             </div>
+            <hr class="bg-gray-600 opacity-2" />
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
                     <strong>Opps!</strong> Something went wrong, please check below errors.<br><br>
@@ -38,12 +39,13 @@
                     <div class="mb-3">
                         <label class="mb-2">Email</label>
                         <input type="email" name="email" class="form-control fs-13px" placeholder="Email address"
-                            value="{{ old('email') }}" data-parsley-required />
+                            data-parsley-required-message="Please provide email address" value="{{ old('email') }}"
+                            data-parsley-required />
                     </div>
                     <div class="mb-3">
                         <label class="mb-2">Password</label>
                         <input type="password" name="password" class="form-control fs-13px" placeholder="Password"
-                            data-parsley-required />
+                            data-parsley-required-message="Fill in your password" data-parsley-required />
                     </div>
                     <div class="form-check mb-30px">
                         <input class="form-check-input" type="checkbox" value="1" id="rememberMe" />
@@ -67,7 +69,7 @@
                     </div>
                     <hr class="bg-gray-600 opacity-2" />
                     <div class="text-gray-600 text-center  mb-0">
-                        &copy; Color Admin All Right Reserved 2021
+                        &copy; Ikotek 2022
                     </div>
                 </form>
             </div>
