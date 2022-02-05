@@ -7,6 +7,24 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## How to use
+
+ using terminal 
+1. Clone GitHub repo for this project locally
+2. cd into your project
+3. Install Composer Dependencies by Running "composer install"
+4. Create a copy of your .env file by using "cp .env.example .env"
+5. Generate an app encryption key by running "php artisan key:generate"
+6. In the .env file, add database information to allow Laravel to connect to the database
+7. In the .env file,configure password reset and email verification, use any mail provider such as Gmail or Mailtrap
+8. Migrate the database by running "php artisan migrate"
+9. Seed the database by running the followings
+        1.php artisan db:seed --class=RoleTableSeeder
+        2.php artisan db:seed --class=PermissionTableSeeder
+        3.php artisan db:seed --class=UserTableSeeder
+10. Start the application by running "php artisan serve"
+11. Login as Super Admin:- email == 'superadmin@gmail.com', password == 'Super2022.'
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
