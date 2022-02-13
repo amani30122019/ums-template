@@ -3,9 +3,9 @@
     <div id="content" class="app-content">
         <div class="container">
             <div class="justify-content-center">
-                @if (\Session::has('success'))
+                @if (Session::has('success'))
                     <div class="alert alert-success">
-                        <p>{{ \Session::get('success') }}</p>
+                        <p>{{ Session::get('success') }}</p>
                     </div>
                 @endif
                 <div class="card">

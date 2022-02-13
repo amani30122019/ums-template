@@ -89,7 +89,7 @@
                 <img src="{{ asset('assets/img/user/user-13.jpg') }}" alt="" />
                 <span>
                     <span class="d-none d-md-inline">{{ Auth::user()->first_name }}</span>
-                    <b class="caret"></b>
+
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end me-1">

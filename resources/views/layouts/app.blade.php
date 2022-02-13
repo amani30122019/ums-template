@@ -20,8 +20,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('datatable/css/dataTables.bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('datatable/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('sweetalert/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
 </head>
 
 <body>
@@ -101,6 +105,15 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('datatable/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('datatable/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('sweetalert/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('toastr/toastr.min.js') }}"></script>
+
+
+
 </body>
 
 </html>

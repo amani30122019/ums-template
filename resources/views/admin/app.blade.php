@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <link href="{{ asset('assets/css/vendor.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/default/app.min.css') }}" rel="stylesheet" />
+
+
 </head>
 
 <body>
@@ -26,9 +28,7 @@
         @yield('content')
 
     </div>
-
-
-
+    <script src="{{ asset('jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/app.min.js') }}" type="text/javascript"></script>
 

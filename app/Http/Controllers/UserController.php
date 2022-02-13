@@ -27,7 +27,6 @@ class UserController extends Controller
     public function index()
     {
         $data = User::orderBy('id', 'desc')->paginate(10);
-        
         return view('admin.users.index', compact('data'));
     }
 
@@ -39,7 +38,6 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name', 'name')->all();
-
         return view('admin.users.create', compact('roles'));
     }
 
@@ -78,7 +76,6 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-
         return view('admin.users.show', compact('user'));
     }
 
