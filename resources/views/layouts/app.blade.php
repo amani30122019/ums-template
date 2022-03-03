@@ -21,11 +21,7 @@
 
     <!-- Styles -->
 
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('datatable/css/dataTables.bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('datatable/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('sweetalert/sweetalert2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
+
 </head>
 
 <body>
@@ -105,12 +101,7 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('datatable/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('datatable/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('sweetalert/sweetalert2.min.js') }}"></script>
-    <script src="{{ asset('toastr/toastr.min.js') }}"></script>
+
 
 
 

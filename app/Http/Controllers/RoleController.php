@@ -27,7 +27,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $data = Role::orderBy('id', 'DESC')->paginate(5);
 

@@ -45,7 +45,7 @@
              <div class="menu-header">Navigation</div>
              <div class="menu-item">
                  @can('user-list')
-                     <a href="{{ route('users.index') }}" class="menu-link">
+                     <a href="{{ route('index.users') }}" class="menu-link">
                          <div class="menu-icon">
                              <i class="fa fa-users"></i>
                          </div>
@@ -55,7 +55,7 @@
              </div>
              <div class="menu-item">
                  @can('permission-list')
-                     <a href="{{ route('permissions.index') }}" class="menu-link">
+                     <a href="{{ route('index.permissions') }}" class="menu-link">
                          <div class="menu-icon">
                              <i class="fa fa-lock"></i>
                          </div>

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Validator;
 
 class PermissionController extends Controller
 {
@@ -25,11 +28,38 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function indexPermissions(Request $request)
     {
-        $data = Permission::orderBy('id', 'DESC')->paginate(10);
+        if ($request->ajax()) {
+            $permissions = Permission::orderBy('id', 'desc')->get();
+            return DataTables::of($permissions)
+            ->addIndexColumn()
+            ->addColumn('role', function ($user) {
+                if (!empty($user->getRoleNames())) {
+                    foreach ($user->getRoleNames() as $val) {
+                        return ' <span class="badge bg-dark text-white">'.$val.'</span>';
+                    }
+                }
+            })
+            ->addColumn('actions', function ($row) {
+                if (Gate::any(['permission-edit', 'permission-delete'])) {
+                    $actionBtn =
+            '<div>
 
-        return view('admin.permissions.index', compact('data'));
+            <a href="javascript:void(0)" class="btn btn-primary btn-sm" data-id="'.$row['id'].'" id="edit-permission-btn">Edit</a>
+
+            <a href="javascript:void(0)" class="btn btn-danger btn-sm" data-id="'.$row['id'].'" id="delete-permission-btn">Delete</a>
+
+            </div>' ;
+                    return $actionBtn;
+                }
+            })
+            ->rawColumns(['role','actions'])
+            ->make(true);
+        }
+       
+        $permissions = Permission::orderBy('id', 'desc')->get();
+        return view('admin.permissions.index', compact(['permissions']));
     }
 
     /**
@@ -48,16 +78,26 @@ class PermissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storePermission(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:permissions,name',
+        $validation = Validator::make($request->all(), [
+            'name' => 'required|unique:permissions,name'
+        ], [
+           'name.required'=>'Please fill in this field',
+           'name.unique'=>'Permission already in use,try another',
         ]);
-    
-        Permission::create(['name' => $request->input('name')]);
-    
-        return redirect()->route('permissions.index')
-            ->with('success', 'Permission created successfully.');
+        if ($validation->fails()) {
+            return response()->json(['code'=>0,'errors'=>$validation->getMessageBag()]);
+        } else {
+            $permission= Permission::create(['name' => $request->name]);
+            if (!$permission) {
+                return response()->json(['code'=>0,'errors'=>'failed to save new permission.']);
+            } else {
+                return response()->json(['code'=>1,'msg'=>'Permission created successfully.']);
+            }
+            return redirect()->route('permissions.index')
+            ->with('success', '');
+        }
     }
 
     /**
@@ -69,7 +109,6 @@ class PermissionController extends Controller
     public function show($id)
     {
         $permission = Permission::find($id);
-    
         return view('admin.permissions.show', compact('permission'));
     }
 
@@ -79,11 +118,10 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editPermission(Request $request)
     {
-        $permission = Permission::find($id);
-    
-        return view('admin.permissions.edit', compact('permission'));
+        $permission = Permission::find($request->permissionId);
+        return response()->json(['permission'=>$permission]);
     }
 
     /**
@@ -93,18 +131,25 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updatePermission(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required'
+        $validation = Validator::make($request->all(), [
+            'permission_name' => 'required|unique:permissions,name,'.$request->pid,
+        ], [
+           'permission_name.required'=>'Please fill in this field'
         ]);
-    
-        $permission = Permission::find($id);
-        $permission->name = $request->input('name');
-        $permission->save();
-        
-        return redirect()->route('permissions.index')
-            ->with('success', 'Permission updated successfully.');
+        if ($validation->fails()) {
+            return response()->json(['code'=>0,'errors'=>$validation->getMessageBag()]);
+        } else {
+            $permission = Permission::find($request->pid);
+            $permission->name = $request->input('permission_name');
+            $updated =  $permission->save();
+            if ($updated) {
+                return response()->json(['code'=>1,'msg'=>'Permission updated successfully']);
+            } else {
+                return response()->json(['code'=>0,'error'=>'Something is wrong, Failed to update Permission']);
+            }
+        }
     }
 
     /**
@@ -113,11 +158,14 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroyPermission(Request $request)
     {
-        Permission::find($id)->delete();
-        
-        return redirect()->route('permissions.index')
-            ->with('success', 'Permission deleted successfully');
+        $id= $request->permissionId;
+        $deleted= Permission::find($id)->delete();
+        if (!$deleted) {
+            return response()->json(['code'=>0,'error'=>'Something has gone wrong,Permission not DELETED']);
+        } else {
+            return response()->json(['code'=>1,'msg'=>'Permission deleted successfully']);
+        }
     }
 }

@@ -21,7 +21,8 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
+                                    <th>Title</th>
+                                    <th>Body</th>
                                     <th width="280px">Action</th>
                                 </tr>
                             </thead>
@@ -30,6 +31,7 @@
                                     <tr>
                                         <td>{{ $post->id }}</td>
                                         <td>{{ $post->title }}</td>
+                                        <td>{{ $post->body }}</td>
                                         <td>
                                             <a class="btn btn-success"
                                                 href="{{ route('posts.show', $post->id) }}">Show</a>
