@@ -19,9 +19,7 @@
 7. In the .env file,configure password reset and email verification, use any mail provider such as Gmail or Mailtrap
 8. Migrate the database by running "php artisan migrate"
 9. Seed the database by running the followings
-        1.php artisan db:seed --class=RoleTableSeeder
-        2.php artisan db:seed --class=PermissionTableSeeder
-        3.php artisan db:seed --class=UserTableSeeder
+        php artisan db:seed        
 10. Start the application by running "php artisan serve"
 11. Login as Super Admin:- email == 'superadmin@gmail.com', password == 'Super2022.'
 
