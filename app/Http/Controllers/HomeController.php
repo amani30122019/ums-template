@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class HomeController extends Controller
 {
@@ -26,5 +29,14 @@ class HomeController extends Controller
     {
         return view('admin.app');
         //return view('home');
+    }
+    public function widgets()
+    {
+        $posts= Post::all()->count();
+        $roles= Role::all()->count();
+        $permission= Permission::all()->count();
+        $users= User::all()->count();
+
+        return view('admin.home.index', compact(['posts','users','permission','roles']));
     }
 }

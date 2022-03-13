@@ -44,6 +44,16 @@
              </div>
              <div class="menu-header">Navigation</div>
              <div class="menu-item">
+
+                 <a href="{{ route('home') }}" class="menu-link active ">
+                     <div class="menu-icon">
+                         <i class="fa fa-home"></i>
+                     </div>
+                     <div class="menu-text">Home</div>
+                 </a>
+
+             </div>
+             <div class="menu-item">
                  @can('user-list')
                      <a href="{{ route('index.users') }}" class="menu-link">
                          <div class="menu-icon">

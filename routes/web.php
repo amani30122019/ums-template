@@ -26,9 +26,11 @@ Route::get('/', function () {
 Auth::routes(['verify'=> true]);
 //Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', [HomeController::class, 'widgets'])->name('home');
+
     
     // roles routes
     /* Route::get('roles', [RoleController::class,'indexRoles'])->name('index.roles');

@@ -25,17 +25,18 @@
 </head>
 
 <body>
-    <div id="loader" class="app-loader">
+    {{-- <div id="loader" class="app-loader">
         <span class="spinner"></span>
-    </div>
+    </div> --}}
 
     <div id="app" class="app app-header-fixed app-sidebar-fixed ">
 
         @include('admin.partials.header')
         @include('admin.partials.sidebar')
 
-
         @yield('content')
+
+
 
     </div>
 
