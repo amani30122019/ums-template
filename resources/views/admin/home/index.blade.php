@@ -2,16 +2,13 @@
 @section('content')
     <div id="content" class="app-content">
         <div class="container">
-            <div class="mb-10px mt-10px fs-10px">
-                <b class="text-dark">WIDGETS STAT</b>
-            </div>
 
             <div class="row gx-2 mb-50px">
                 <div class="col-lg-4 col-sm-6">
                     <div class="widget widget-stats bg-teal mb-7px">
                         <div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"></i></div>
                         <div class="stats-content">
-                            <div class="stats-title">Users</div>
+                            <div class="stats-title">USERS</div>
                             <div class="stats-number">{{ $users }}</div>
                             <div class="stats-progress progress">
                                 <div class="progress-bar" style="width: 70.1%;"></div>
@@ -24,7 +21,7 @@
                     <div class="widget widget-stats bg-blue mb-7px">
                         <div class="stats-icon stats-icon-lg"><i class="fa fa-dollar-sign fa-fw"></i></div>
                         <div class="stats-content">
-                            <div class="stats-title">Posts</div>
+                            <div class="stats-title">POSTS</div>
                             <div class="stats-number">{{ $posts }}</div>
                             <div class="stats-progress progress">
                                 <div class="progress-bar" style="width: 40.5%;"></div>
@@ -46,8 +43,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="col-lg-4 col-sm-6">
                     <div class="widget widget-stats bg-dark mb-7px">
                         <div class="stats-icon stats-icon-lg"><i class="fa fa-comment-alt fa-fw"></i></div>
@@ -88,7 +83,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection
