@@ -46,11 +46,11 @@ class UserController extends Controller
                     $actionBtn =
             '<div>
 
-            <a href="javascript:void(0)" class="btn btn-success btn-sm" data-id="'.$row['id'].'" id="show-user-btn">Show</a>
+            <a href="javascript:void(0)" class="btn-sm" data-id="'.$row['id'].'" id="show-user-btn"><i class="fa fa-eye" aria-hidden="true"></i></a>
  
-            <a href="javascript:void(0)" class="btn btn-primary btn-sm" data-id="'.$row['id'].'" id="edit-user-btn">Edit</a>
+            <a href="javascript:void(0)" class="btn-sm" data-id="'.$row['id'].'" id="edit-user-btn"><i class="fa fa-user-edit"></i></a>
 
-            <a href="javascript:void(0)" class="btn btn-danger btn-sm" data-id="'.$row['id'].'" id="delete-user-btn">Delete</a>
+            <a href="javascript:void(0)" class="btn-sm" data-id="'.$row['id'].'" id="delete-user-btn"><i class="fa fa-trash" style="color: red"></i></a>
 
             </div>' ;
                     return $actionBtn;
