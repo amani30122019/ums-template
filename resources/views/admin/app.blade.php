@@ -16,12 +16,15 @@
     <link rel="stylesheet" href="{{ asset('datatable/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('sweetalert/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('parsley/parsley.css') }}">
     <style>
         .error-text {
             font-size: 13px
         }
 
     </style>
+
+
 </head>
 
 <body>
@@ -46,6 +49,15 @@
     <script src="{{ asset('datatable/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('sweetalert/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('js/ckeditor.js') }}"></script>
+    <script src="{{ asset('parsley/parsley.min.js') }}"></script>
+    {{-- <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script> --}}
     @yield('script')
 </body>
 

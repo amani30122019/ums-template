@@ -35,8 +35,6 @@
                                         <td>{{ $user->first_name }}</td>
                                         <td>{{ $user->last_name }}</td>
                                         <td>{{ $user->email }}</td>
-
-
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -160,7 +158,6 @@
                 );
 
             })
-
             //get  user details in editing modal
             $(document).on('click', '#edit-user-btn', function() {
                 var form = this;
@@ -190,6 +187,7 @@
             $("#edit-user-form").on('submit', function(event) {
                 event.preventDefault();
                 var form = this;
+
                 $.ajax({
                     url: '{{ route('update.user') }}',
                     method: "POST",

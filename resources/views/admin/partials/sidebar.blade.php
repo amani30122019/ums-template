@@ -45,12 +45,12 @@
              <div class="menu-header">Navigation</div>
              <div class="menu-item">
 
-                 <a href="{{ route('home') }}" class="menu-link active ">
+                 {{-- <a href="{{ route('home') }}" class="menu-link active ">
                      <div class="menu-icon">
                          <i class="fa fa-home"></i>
                      </div>
                      <div class="menu-text">Home</div>
-                 </a>
+                 </a> --}}
 
              </div>
              <div class="menu-item">
@@ -90,6 +90,16 @@
                              <i class="fa fa-comment"></i>
                          </div>
                          <div class="menu-text">Posts</div>
+                     </a>
+                 @endcan
+             </div>
+             <div class="menu-item">
+                 @can('category-list')
+                     <a href="{{ route('index.users') }}" class="menu-link">
+                         <div class="menu-icon">
+                             <i class="fa fa-list"></i>
+                         </div>
+                         <div class="menu-text">Categories</div>
                      </a>
                  @endcan
              </div>

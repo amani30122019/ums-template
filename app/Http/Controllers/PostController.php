@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -27,9 +30,29 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Post::latest()->paginate(5);
+        $posts = Post::orderBy('id', 'desc')->get();
+        if ($request->ajax()) {
+            return DataTables::of($posts)
+            ->addIndexColumn()
+            ->addColumn('actions', function ($row) {
+                if (Gate::any(['post-edit', 'post-delete'])) {
+                    $actionBtn =
+            '<div>
 
-        return view('admin.posts.index', compact('data'));
+            <a href="javascript:void(0)" class="btn-sm btn btn-primary" data-id="'.$row['id'].'" id="show-post-btn">Show</a>
+ 
+            <a href="javascript:void(0)" class="btn-sm btn btn-success" data-id="'.$row['id'].'" id="edit-post-btn">Edit</a>
+
+            <a href="javascript:void(0)" class="btn-sm btn btn-danger" data-id="'.$row['id'].'" id="delete-post-btn">Delete</a>
+
+            </div>' ;
+                    return $actionBtn;
+                }
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
+        }
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -50,16 +73,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validation= Validator::make($request->all(), [
             'title' => 'required',
             'body' => 'required',
+        ], [
+            'title.required'=>'Please fill in your post title',
+            'body.required'=>'Please fill in post body',
+
         ]);
-        $input = $request->except(['_token']);
-    
-        Post::create($input);
-    
-        return redirect()->route('posts.index')
-            ->with('success', 'Post created successfully.');
+        if ($validation->fails()) {
+            return response()->json(['code'=>0,'errors'=> $validation->getMessageBag()]);
+        } else {
+            $input = $request->all();
+            $newPost= Post::create($input);
+            if ($newPost) {
+                return response()->json(['code'=>1,'msg'=> 'Post created successfully.']);
+            } else {
+                return response()->json(['code'=>0,'errors'=> 'Something has gone wrong Post not  saved in database']);
+            }
+        }
     }
 
     /**
@@ -95,19 +127,35 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updatePost(Request $request)
     {
-        $this->validate($request, [
+        $id = $request->post_id;
+      
+        $validation= Validator::make($request->all(), [
             'title' => 'required',
             'body' => 'required',
-        ]);
+        ], [
+            'title.required'=>'Please fill in your post title',
+            'body.required'=>'Please fill in post body',
 
-        $post = Post::find($id);
-    
-        $post->update($request->all());
-    
-        return redirect()->route('posts.index')
-            ->with('success', 'Post updated successfully.');
+        ]);
+        if ($validation->fails()) {
+            return response()->json(['code'=>0,'errors'=> $validation->getMessageBag()]);
+        } else {
+            $post = Post::find($id);
+            if ($post) {
+                $post->title=$request->title;
+                $post->body=$request->body;
+                $updated= $post->save();
+                if ($updated) {
+                    return response()->json(['code'=>1,'msg'=> 'Post Updated successfully.']);
+                } else {
+                    return response()->json(['code'=>0,'errors'=> 'Something has gone wrong Post not  updates in database']);
+                }
+            } else {
+                return response()->json(['code'=>0,'errors'=> 'Post not found  in database']);
+            }
+        }
     }
 
     /**
@@ -116,11 +164,18 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroyPost(Request $request)
     {
-        Post::find($id)->delete();
-    
-        return redirect()->route('posts.index')
-            ->with('success', 'Post deleted successfully.');
+        $id= $request->post_id;
+        $postDeleted=Post::find($id)->delete();
+        if ($postDeleted) {
+            return response()->json(['code'=>1,'msg'=>'Post deleted successfully.']);
+        }
+    }
+    // GET USER DETAILS
+    public function getPost(Request $request)
+    {
+        $post_details = Post::find($request->post_id);
+        return response()->json(['post'=>$post_details]);
     }
 }

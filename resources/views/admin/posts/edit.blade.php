@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <strong>Body:</strong>
-                            {!! Form::textarea('body', null, ['placeholder' => 'Body', 'class' => 'form-control']) !!}
+                            {!! Form::textarea('body', null, ['placeholder' => 'Body', 'class' => 'form-control', 'id' => 'editor']) !!}
                         </div>
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">Submit</button>

@@ -97,7 +97,7 @@
             <div class="login-header">
                 <div class="brand text-center">
                     <div class="d-flex align-items-center text-gray-600">
-                        <span class="logo"></span> <b>UMS </b> template
+                        <b>{{ config('app.name') }} </b>
                     </div>
                 </div>
                 <div class="icon">
@@ -106,7 +106,7 @@
             </div>
             <div class="login-content text-gray-600">
                 <form action="{{ route('register') }}" method="POST" class="fs-13px" id="form"
-                    data-parsley-validate autocomplete="off">
+                    data-parsley-validate autocomplete="on">
                     @csrf
                     <div class="mb-3">
                         <label class="mb-2">Name <span class="text-danger">*</span></label>
@@ -128,6 +128,11 @@
                         <input type="email" name="email" class="form-control fs-13px" placeholder="Email address"
                             value="{{ old('email') }}" data-parsley-required-message="Please enter your email address"
                             data-parsley-required />
+                    </div>
+                    <div class="text-danger">
+                        @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-4">
                         <label class="mb-2">Password <span class="text-danger">*</span></label>

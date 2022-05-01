@@ -1,8 +1,9 @@
 <div id="header" class="app-header">
 
     <div class="navbar-header">
-        <a href="{{ route('home') }}" class="navbar-brand"><span class="navbar-logo"></span> <b>UMS</b>
-            Template</a>
+        <a href="{{ route('home') }}" class="navbar-brand"><span class="navbar-logo"></span>
+            <b>{{ config('app.name') }}</b>
+        </a>
         <button type="button" class="navbar-mobile-toggler" data-toggle="app-sidebar-mobile">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -12,14 +13,7 @@
 
 
     <div class="navbar-nav">
-        <div class="navbar-item navbar-form">
-            <form action="index.html" method="POST" name="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter keyword" />
-                    <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-                </div>
-            </form>
-        </div>
+
         <div class="navbar-item dropdown">
             <a href="index.html#" data-bs-toggle="dropdown" class="navbar-link dropdown-toggle icon">
                 <i class="fa fa-bell"></i>

@@ -13,15 +13,14 @@
                          <div class="row gx-3">
                              <div class="col-md-6 mb-2 mb-md-0">
                                  <input type="text" name="first_name" id="efname" class="form-control fs-13px"
-                                     placeholder="First name" value="{{ old('first_name') }}"
+                                     placeholder="First name"
                                      data-parsley-required-message="Please enter your First name "
                                      data-parsley-required />
                                  <span class="text-danger  error-text first_name_error"></span>
                              </div>
                              <div class="col-md-6">
                                  <input type="text" class="form-control fs-13px" placeholder="Last name" id="elname"
-                                     name="last_name" value="{{ old('last_name') }}"
-                                     data-parsley-required-message="Please enter your Last name"
+                                     name="last_name" data-parsley-required-message="Please enter your Last name"
                                      data-parsley-required />
                                  <span class="text-danger  error-text last_name_error"></span>
                              </div>

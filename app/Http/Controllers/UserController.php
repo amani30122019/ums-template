@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
-use Database\Factories\UserFactory;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
@@ -30,8 +28,9 @@ class UserController extends Controller
      */
     public function indexUsers(Request $request)
     {
+        $users = User::orderBy('id', 'desc')->get();
+
         if ($request->ajax()) {
-            $users = User::orderBy('id', 'desc')->get();
             return DataTables::of($users)
             ->addIndexColumn()
             ->addColumn('role', function ($user) {
@@ -60,7 +59,6 @@ class UserController extends Controller
             ->make(true);
         }
         $roles = Role::pluck('name', 'name')->all();
-        $users = User::orderBy('id', 'desc')->get();
         return view('admin.users.index', compact(['users','roles']));
     }
 

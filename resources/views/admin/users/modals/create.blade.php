@@ -26,30 +26,31 @@
                              </div>
                          </div>
                      </div>
-                     <div class="form-group">
+                     <div class="form-group mb-3">
                          <strong>Email:</strong>
                          <input type="email" name="email" id="email" placeholder="Email" class="form-control">
                          <span class="text-danger  error-text email_error"></span>
 
                      </div>
-                     <div class="form-group">
+                     <div class="form-group mb-3">
                          <strong>Password:</strong>
                          <input type="password" name="password" id="password" placeholder="Password"
                              class="form-control">
                          <span class="text-danger  error-text password_error"></span>
 
                      </div>
-                     <div class="form-group">
+                     <div class="form-group mb-3">
                          <strong>Confirm Password:</strong>
                          <input type="password" name="cpassword" id="cpassword" placeholder="confirm password"
                              class="form-control">
                          <span class="text-danger  error-text cpassword_error"></span>
 
                      </div>
-                     <div class="form-group">
+                     <div class="form-group mb-3">
                          <strong>Role:</strong>
                          <select class="form-control multiple" name="roles[]" id="role">
-                             <option value="" disabled selected hidden>Choose User Role...</option>
+                             <option value="" disabled selected hidden class="text-gray">Choose User's Role...
+                                 eg Accountant</option>
                              @foreach ($roles as $key => $role)
                                  <option value="{{ $key }}">
                                      {{ $role }}
@@ -59,7 +60,7 @@
                          <span class="text-danger  error-text roles_error"></span>
 
                      </div>
-                     <div class="mt-3">
+                     <div class="my-3">
                          <button type="submit" class="btn btn-primary">Submit</button>
                      </div>
 

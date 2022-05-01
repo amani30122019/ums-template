@@ -86,7 +86,7 @@
             <div class="login-header">
                 <div class="brand text-center">
                     <div class="d-flex align-items-center text-gray-600">
-                        <span class="logo"></span> <b>UMS </b> template
+                        <b>{{ config('app.name') }} </b>
                     </div>
                 </div>
                 <div class="icon">
@@ -96,8 +96,15 @@
             <div class="login-content text-gray-500">
                 <div class="card shadow">
                     <div class="card-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                @foreach ($errors->all() as $error)
+                                    <span>{{ $error }}</span>
+                                @endforeach
+                            </div>
+                        @endif
                         <form action="{{ route('login') }}" method="POST" id="user-login-form" data-parsley-validate
-                            autocomplete="off">
+                            autocomplete="on">
                             @csrf
                             <div class="mb-3">
                                 <label class="mb-2">Email</label>

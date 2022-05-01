@@ -20,22 +20,33 @@
                         </span>
                     </div>
                     <div class="card-body">
-                        {!! Form::open(['route' => 'posts.store', 'method' => 'POST', 'autocomplete' => 'off']) !!}
-                        <div class="form-group">
-                            <strong>Title:</strong>
-                            {!! Form::text('title', null, ['placeholder' => 'Title', 'class' => 'form-control']) !!}
-                        </div>
-                        <div class="form-group">
-                            <strong>Body:</strong>
-                            {!! Form::textarea('body', null, ['placeholder' => 'Body', 'class' => 'form-control']) !!}
-                        </div>
-                        <div class="mt-3">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                        {!! Form::close() !!}
+                        <form action="{{ route('posts.store') }}" method="post" data-parsley-validate
+                            id="form-create-post">
+                            @csrf
+                            <div class="form-group">
+                                <strong>Title:</strong>
+                                <input type="text" name="title" class="form-control" placeholder="Title"
+                                    data-parsley-required>
+                            </div>
+                            <div class="form-group mt-3">
+                                <strong>Body:</strong>
+                                <textarea name="body" id="editor" cols="30" rows="10" class="form-control" placeholder="Type here the body message"
+                                    data-parsley-required></textarea>
+                            </div>
+                            <div class="mt-3">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $(function() {
+            $('#form-create-post').parsley();
+        })
+    </script>
 @endsection
