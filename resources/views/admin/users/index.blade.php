@@ -22,6 +22,7 @@
                                     <th>#</th>
                                     <th>First name</th>
                                     <th>Last name</th>
+                                    <th>Phone Number</th>
                                     <th>Email</th>
                                     <th>Role</th>
                                     <th>Actions</th>
@@ -34,6 +35,7 @@
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->first_name }}</td>
                                         <td>{{ $user->last_name }}</td>
+                                        <td>{{ $user->phone }}</td>
                                         <td>{{ $user->email }}</td>
                                     </tr>
                                 @endforeach
@@ -49,6 +51,10 @@
     @include('admin.users.modals.edit')
 @endsection
 @section('script')
+    <script>
+        $('#create-user-form').parsley();
+        $('#edit-user-form').parsley();
+    </script>
     <script>
         toastr.options.preventDuplicates = true;
         toastr.options.timeOut = 1500;
@@ -70,6 +76,7 @@
                 let form = this
                 let fname = $('#fname').val();
                 let lname = $('#lname').val();
+                let phone = $('#phone').val();
                 let email = $('#email').val();
                 let password = $('#password').val();
                 let cpassword = $('#cpassword').val();
@@ -80,6 +87,7 @@
                     data: {
                         first_name: capitalizeEveryFirstLetter(fname),
                         last_name: capitalizeEveryFirstLetter(lname),
+                        phone: phone,
                         email: email,
                         password: password,
                         cpassword: cpassword,
@@ -126,6 +134,10 @@
                     {
                         data: 'last_name',
                         name: 'last_name'
+                    },
+                    {
+                        data: 'phone',
+                        name: 'phone'
                     },
                     {
                         data: 'email',
@@ -175,6 +187,8 @@
                         .first_name);
                     $('.editUserModal').find('input[name="last_name"]').val(res.user
                         .last_name);
+                    $('.editUserModal').find('input[name="phone"]').val(res.user
+                        .phone);
                     $('.editUserModal').find('input[name="email"]').val(res.user
                         .email);
                     $('.editUserModal').find(":selected").val(res.user.roles[0].name).text(res.user

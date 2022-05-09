@@ -75,6 +75,7 @@ class UserController extends Controller
         $validation= Validator::make($request->all(), [
             'first_name' => 'required',
             'last_name' => 'required',
+            'phone' => 'required|unique:users,phone',
             'email' => 'required|email|unique:users,email',
             'password' => 'required',
             'cpassword'=>'required|same:password',
@@ -82,9 +83,11 @@ class UserController extends Controller
         ], [
             'first_name.required'=>'Please fill in your first name',
             'last_name.required'=>'Please fill in your last name',
+            'phone.required'=>'Please fill in your mobile phone number',
             'email.required'=>'Please fill in email address',
             'email.email'=>'Please fill in valid email address',
             'email.unique'=>'This email address already taken try another',
+            'phone.unique'=>'This phone number already taken try another',
             'cpassword.same'=>'Password do not match check well again',
             'roles.required'=>'Please select a user role',
 
@@ -133,11 +136,13 @@ class UserController extends Controller
         $validation=Validator::make($request->all(), [
             'first_name' => 'required',
             'last_name' => 'required',
+            'phone' => 'required|unique:users,phone,'.$userId,
             'email' => 'required|email|unique:users,email,'.$userId,
             'roles' => 'required'
         ], [
             'first_name.required'=>'Please fill in your first name',
             'last_name.required'=>'Please fill in your last name',
+            'phone.required'=>'Please fill in your mobile phone number',
             'email.required'=>'Please fill in email address',
             'email.email'=>'Please fill in valid email address',
             'email.unique'=>'This email address already taken try another',
@@ -150,6 +155,7 @@ class UserController extends Controller
             $user = User::find($userId);
             $user->first_name= ucwords($request->first_name);
             $user->last_name= ucwords($request->last_name);
+            $user->phone= ucwords($request->phone);
             $user->email= $request->email;
             $updated= $user->save();
 
@@ -177,7 +183,7 @@ class UserController extends Controller
         $id = $request->userId;
         $deleted= User::find($id)->delete();
         if (!$deleted) {
-            return response()->json(['code'=>0,'errors'=>'Something has gone wrong,Country not DELETED']);
+            return response()->json(['code'=>0,'errors'=>'Something has gone wrong,User not DELETED']);
         } else {
             return response()->json(['code'=>1,'msg'=>'User DELETED from database successfully']);
         }

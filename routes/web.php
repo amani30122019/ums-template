@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -10,7 +9,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 
 //Client routes
-Route::get('/', [ClientController::class,'index']);
+Route::get('/', function () {
+    return view('auth.login');
+});
 // administration routes
 Auth::routes(['verify'=> true]);
 //Auth::routes();

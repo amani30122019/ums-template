@@ -26,6 +26,17 @@
                              </div>
                          </div>
                      </div>
+                     <div class="form-group mb-3">
+                         <strong>Phone number:</strong>
+                         <input type="numeric" class="form-control" name="phone" id="ephone"
+                             onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                             placeholder="eg. 0655373778  ten digits only"
+                             data-parsley-required-message="Please enter your Mobile phone number."
+                             data-parsley-pattern="/^(0)(7(?:(?:[1345678][0-9]))[0-9]{6})|^(0)(6(?:(?:[25789][0-9]))[0-9]{6})$/"
+                             data-parsley-pattern-message="Your Phone number must start with 0,  and valid in Tanzania ."
+                             data-parsley-required>
+                         <span class="text-danger  error-text phone_error"></span>
+                     </div>
                      <div class="form-group">
                          <strong>Email:</strong>
                          <input type="email" name="email" id="eemail" placeholder="Email" class="form-control">

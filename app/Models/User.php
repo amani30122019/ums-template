@@ -22,17 +22,12 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
     protected $fillable = [
         'first_name',
         'last_name',
+        'phone',
         'email',
         'password',
         'email_verified_at',
        
     ];
-    /*  protected $fillable = [
-         'name',
-         'email',
-         'password',
-         'email_verified_at',
-     ]; */
 
     /**
      * The attributes that should be hidden for serialization.
